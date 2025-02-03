@@ -89,7 +89,7 @@
                 document.querySelector('.buttons').classList.add('hidden');
                 document.getElementById('message').innerText = "You will forever be, my Valentine ❤️";
                 document.getElementById('message').classList.remove('hidden');
-                showRetryButton();
+                showTryYesButton();
             }
         }
 
@@ -101,7 +101,6 @@
             message.classList.remove('hidden');
             document.getElementById('bgMusic').play();
             createHearts();
-            showRetryButton();
         }
 
         function createHearts() {
@@ -116,32 +115,12 @@
             }
         }
 
-        function showRetryButton() {
-            let retryButton = document.createElement('button');
-            retryButton.innerText = 'Try Again';
-            retryButton.style.marginTop = "20px";
-            retryButton.onclick = resetPage;
-            document.body.appendChild(retryButton);
-        }
-
-        function resetPage() {
-            // Reset everything back to the starting state
-            document.querySelector('.buttons').classList.remove('hidden');
-            document.getElementById('message').classList.add('hidden');
-            document.getElementById('introMessage').classList.remove('hidden');
-            document.getElementById('questionMessage').classList.add('hidden');
-            noClickCount = 0;
-
-            // Remove any extra buttons or messages
-            let retryButton = document.querySelector('button');
-            retryButton.remove();
-
-            // Reset the position and style of the "No" button
-            let noButton = document.querySelector('.no');
-            noButton.style.position = "relative";
-            noButton.style.left = "0px";
-            noButton.style.top = "0px";
-            noButton.style.transform = "none";
+        function showTryYesButton() {
+            let tryYesButton = document.createElement('button');
+            tryYesButton.innerText = 'Try Yes';
+            tryYesButton.style.marginTop = "20px";
+            tryYesButton.onclick = celebrate;
+            document.body.appendChild(tryYesButton);
         }
 
         // Initialize the page
