@@ -65,7 +65,8 @@
     </style>
 </head>
 <body>
-    <h1>Hi there, Rosebelle Lopez Pacayo! I have a question for you ❤️</h1>
+    <h1 id="introMessage">Hi there, Rosebelle Lopez Pacayo! I have a question for you ❤️</h1>
+    <h2 id="questionMessage" class="hidden">Will you be my Valentine?</h2>
     <div class="buttons">
         <button class="yes" onclick="celebrate()">Yes</button>
         <button class="no" onclick="moveNo()">No</button>
@@ -75,6 +76,7 @@
 
     <script>
         let noClickCount = 0;
+
         function moveNo() {
             let noButton = document.querySelector('.no');
             if (noClickCount < 5) {
@@ -123,12 +125,23 @@
         }
 
         function resetPage() {
-            // Reset all changes
+            // Reset everything back to the starting state
             document.querySelector('.buttons').classList.remove('hidden');
             document.getElementById('message').classList.add('hidden');
+            document.getElementById('introMessage').classList.remove('hidden');
+            document.getElementById('questionMessage').classList.add('hidden');
             noClickCount = 0;
+
             let retryButton = document.querySelector('button');
             retryButton.remove();
+        }
+
+        // Initialize the page
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('introMessage').classList.add('hidden');
+                document.getElementById('questionMessage').classList.remove('hidden');
+            }, 1000); // Delay before showing the question
         }
     </script>
 </body>
