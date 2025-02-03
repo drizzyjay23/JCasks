@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .no {
+            background-color: gray;
+            color: white;
+            position: relative;
+            transition: transform 0.2s, font-size 0.2s;
+        }
+        .hidden {
+            display: none;
+        }
+        .celebration {
+            font-size: 2rem;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes floatingHearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2rem;
+            animation: floatingHearts 3s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine? ❤️</h1>
+    <div class="buttons">
+        <button class="yes" onclick="celebrate()">Yes</button>
+        <button class="no" onclick="moveNo()">No</button>
+    </div>
+    <h2 id="message" class="hidden"></h2>
+    <audio id="bgMusic" src="https://docs.google.com/uc?export=download&id=1WP3hrZyHCFP5Uo8AGtX07fN25O2r9WWJ" loop></audio>
+
+    <script>
+        let noClickCount = 0;
+        function moveNo() {
+            let noButton = document.querySelector('.no');
+            if (noClickCount < 5) {
+                noButton.style.position = "absolute";
+                noButton.style.left = Math.random() * (window.innerWidth - 100) + "px";
+                noButton.style.top = Math.random() * (window.innerHeight - 100) + "px";
+                noButton.style.transform = "scale(0.8) rotate(-5deg)";
+                noClickCount++;
+            } else {
+                document.querySelector('.buttons').classList.add('hidden');
+                document.getElementById('message').innerText = "You will forever be, my Valentine ❤️";
+                document.getElementById('message').classList.remove('hidden');
+            }
+        }
+        function celebrate() {
+            document.querySelector('.buttons').classList.add('hidden');
+            let message = document.getElementById('message');
+            message.innerHTML = "<img src='https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif' width='200'><br> You better be ready on Feb 14! Dress cute, bring your best smile, and prepare for the most amazing date ever! 💖🎉";
+            message.classList.add('celebration');
+            message.classList.remove('hidden');
+            document.getElementById('bgMusic').play();
+            createHearts();
+        }
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.animationDuration = Math.random() * 2 + 2 + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
