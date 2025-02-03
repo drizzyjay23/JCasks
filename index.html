@@ -135,6 +135,13 @@
             // Remove any extra buttons or messages
             let retryButton = document.querySelector('button');
             retryButton.remove();
+
+            // Reset the position and style of the "No" button
+            let noButton = document.querySelector('.no');
+            noButton.style.position = "relative";
+            noButton.style.left = "0px";
+            noButton.style.top = "0px";
+            noButton.style.transform = "none";
         }
 
         // Initialize the page
